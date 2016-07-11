@@ -10,30 +10,21 @@ PROJECT BUILD
 ====================================================================
 * Change your directory to the root of this project. In my case the project is on Desktop 
 	
-	issa@issa-fulcrum:~$cd /Desktop/project-spark
+	issa@issa-fulcrum:~$cd /Desktop/spark-log-analysis
 
 * Creating project jar file. 
 
 	Run sbt package. This will download all dependencies and then create project jar under /target/scala-2.11/project-spark_2.11-1.0.jar
 	
-	issa@issa-fulcrum:~/Desktop/project-spark$ sbt package
+	issa@issa-fulcrum:~/Desktop/spark-log-analysis$ sbt package
 
 * Running the program on spark. 
 
-	issa@issa-fulcrum:~$ spark-submit --class VisaPredictor --master local /home/issa/Documents/project-spark/target/scala-2.11/project-spark_2.11-1.0.jar
- 
-	This will give you details how to run the program. Here is the message you will get when you run the jar file without providing any argument
-	
-	===================================================
-
-	Usage : <balanceStmt> <holdings> <work experience> <marital status> 
-
-
-	===================================================
+	issa@issa-fulcrum:~$ spark-submit --class LogAnalyzer --master local /home/issa/Desktop/spark-log-analysis_2.11-1.0.jar
 
 
 * For example: 
-	issa@issa-fulcrum:~$  spark-submit --class VisaPredictor --master local /home/issa/Documents/project-spark/target/scala-2.11/project-spark_2.11-1.0.jar 150000 10000 1 0
+	issa@issa-fulcrum:~$  spark-submit --class LogAnalyzer --master local /home/issa/Desktop/spark-log-analysis_2.11-1.0.jar
 
 
 	
