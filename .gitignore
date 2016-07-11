@@ -45,15 +45,16 @@ project/plugins/project/
 
 ## File-based project format:
 *.iws
-
+*.ipr
+*.iml
 ## Plugin-specific files:
 
 # IntelliJ
 /out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
-
+.idea_modules/*
+.idea/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
