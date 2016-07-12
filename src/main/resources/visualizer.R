@@ -20,15 +20,18 @@
   accessByHour$hour <- factor(as.integer(accessByHour$hour))
   accessByHour$count <- factor(as.integer(accessByHour$count))
   
-  byHourPlot <- ggplot(NULL, aes(x = accessByHour$hour, y=accessByHour$count)) + geom_bar(stat = "identity") + xlab("Hour") + ylab("Hits")
-  
-  
+  byHourPlot <- ggplot(NULL, aes(x = accessByHour$hour, y=accessByHour$count)) + geom_bar(colour="#DD8888", fill="#DD8888",stat = "identity") + xlab("Hour") + ylab("Hits")
   
   ggplotly(byHourPlot)
   
   
   accessByIp <- read.df(sqlContext, "hdfs://localhost:9001/bigdata/analytics/output/byIpAddress/part-00000","com.databricks.spark.csv", header="true")
-  accessByIp <- collect(select(accessByIp, "ipAddress", "count"))
-  accessByIp$count <- as.integer(accessByIp$count)
-  accessByIp2 <- sqldf("select * from accessByIp limit 10")
-  View(accessByIp2)
+  accessByIp <- take(accessByIp, 10)
+ # accessByIp <- collect(select(accessByIp, "ipAddress", "count"))
+  accessByIp$count <- factor(as.integer(accessByIp$count))
+  byIpPlot <- ggplot(NULL, aes(x = accessByIp$ipAddress, y = accessByIp$count, group = 1)) + geom_line(color = accessByIp$count) + geom_point() + xlab("Ip Address") + ylab("Hits")
+  ggplotly(byIpPlot)
+  
+  
+#plot_ly(accessByIp, labels = accessByIp$ipAddress, values = accessByIp$count, type = "pie")
+  sparkR.stop()

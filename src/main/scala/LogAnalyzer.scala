@@ -30,6 +30,7 @@ object LogAnalyzer {
 
     accessByHour(input,sc)
     accessByIpAddress(input, sc)
+    accessByHttpStatus(input, sc)
 
     sc.stop
 
@@ -66,6 +67,23 @@ object LogAnalyzer {
     val finalOutput = header.union(output)
     //Coalesce is used to group together the output from different partition in to one
     finalOutput.coalesce(1, true).saveAsTextFile("/bigdata/analytics/output/byIpAddress")
+    /* finalOutput.repartition(1).saveAsTextFile("/bigdata/analytics/output")*/
+  }
+
+  def accessByHttpStatus(input:RDD[String], sc:SparkContext) = {
+    val output = input
+      .map(s => Log(s))
+      .filter(l => l != null)
+      .map(log => (log.status, 1))
+      .reduceByKey(_+_)
+      .map{ case (k,v) => (v,k)}
+      .sortByKey(ascending = false)
+      .map{ case (v,k) => k + "," + v}
+
+    val header = sc.parallelize(Array("httpStatus,count"))
+    val finalOutput = header.union(output)
+    //Coalesce is used to group together the output from different partition in to one
+    finalOutput.coalesce(1, true).saveAsTextFile("/bigdata/analytics/output/byHttpStatus")
     /* finalOutput.repartition(1).saveAsTextFile("/bigdata/analytics/output")*/
   }
 
