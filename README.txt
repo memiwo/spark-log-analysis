@@ -24,8 +24,11 @@ PROJECT BUILD
 
 
 * For example: 
-	issa@issa-fulcrum:~$  spark-submit --class LogAnalyzer --master local /home/issa/Desktop/spark-log-analysis_2.11-1.0.jar
+	issa@issa-fulcrum:~$
 
+
+
+# apache access log file used from http://www.almhuette-raith.at/apache-log/access.log
 
 	
 
