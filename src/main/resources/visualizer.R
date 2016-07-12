@@ -32,6 +32,8 @@
   byIpPlot <- ggplot(NULL, aes(x = accessByIp$ipAddress, y = accessByIp$count, group = 1)) + geom_line(color = accessByIp$count) + geom_point() + xlab("Ip Address") + ylab("Hits")
   ggplotly(byIpPlot)
   
-  
-#plot_ly(accessByIp, labels = accessByIp$ipAddress, values = accessByIp$count, type = "pie")
+  accessByHttpStatus <- read.df(sqlContext, "hdfs://localhost:9001/bigdata/analytics/output/byHttpStatus/part-00000","com.databricks.spark.csv", header="true")
+  accessByHttpStatus <- collect(select(accessByHttpStatus, "httpStatus", "count"))
+  accessByHttpStatus$count <- factor(as.integer(accessByHttpStatus$count))
+  plot_ly(accessByHttpStatus, labels = accessByHttpStatus$httpStatus, values = accessByHttpStatus$count, type = "pie")
   sparkR.stop()
