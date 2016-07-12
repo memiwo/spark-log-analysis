@@ -35,8 +35,8 @@ object Log{
       val date = outputFormat.parse(matcher.group(4).replace("[","").replace("]",""))
       val localDateTime = LocalDateTime.ofInstant(date.toInstant,ZoneId.systemDefault())
 
-      return new Log(matcher.group(1), matcher.group(2), matcher.group(3), localDateTime, matcher.group(5), matcher.group(6),
-        matcher.group(7), Integer.valueOf(matcher.group(8)), matcher.group(10), matcher.group(11))
+      return new Log(matcher.group(1).trim, matcher.group(2).trim, matcher.group(3).trim, localDateTime, matcher.group(5).trim, matcher.group(6).trim(),
+        matcher.group(7).trim, Integer.valueOf(matcher.group(8)), matcher.group(10).trim, matcher.group(11).trim())
     }
 
     return null
