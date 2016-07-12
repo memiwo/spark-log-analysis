@@ -15,7 +15,7 @@ PROJECT BUILD
 
 * Creating project jar file. 
 
-	Run sbt package. This will download all dependencies and then create project jar under /target/scala-2.11/project-spark_2.11-1.0.jar
+	Run sbt package. This will download all dependencies and then create project jar under /target/scala-2.11/spark-log-analysis_2.11-1.0.jar
 	
 	issa@issa-fulcrum:~/Desktop/spark-log-analysis$ sbt package
 
