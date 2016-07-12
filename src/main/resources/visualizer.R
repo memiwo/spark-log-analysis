@@ -24,7 +24,6 @@
   
   ggplotly(byHourPlot)
   
-  
   accessByIp <- read.df(sqlContext, "hdfs://localhost:9001/bigdata/analytics/output/byIpAddress/part-00000","com.databricks.spark.csv", header="true")
   accessByIp <- take(accessByIp, 10)
  # accessByIp <- collect(select(accessByIp, "ipAddress", "count"))

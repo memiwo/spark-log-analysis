@@ -1,5 +1,6 @@
 ====================================================================
 APACHE WEB LOG ANALYZER USING APACHE SPARK AND HADOOP
+AND VISUALIZATION USING R
 ====================================================================
 
 * This project is an sbt project and you need to have sbt installed on your machine.
@@ -29,6 +30,10 @@ PROJECT BUILD
 
 
 # apache access log file used from http://www.almhuette-raith.at/apache-log/access.log
+
+
+#Running r script. Go to the directory where you extracted the project and running the following on r console. Change directory to your directory
+ source('~/Desktop/spark-log-analysis/src/main/resources/visualizer.R')
 
 	
 
